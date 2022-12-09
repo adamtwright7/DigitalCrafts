@@ -1,0 +1,24 @@
+.allImages{
+    width: 100%;
+    height: auto;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit,200px)
+}
+
+img {
+    padding: 5px 0
+}
+
+/* @media screen and (min-width: 400px) {
+
+    .allImages {
+        grid-template-columns: 200px 200px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .allImages{
+        grid-template-columns: repeat(4,200px);
+    }
+} */

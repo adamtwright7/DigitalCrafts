@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    height: 700px;
+}
+
+.redBox {
+    background-color: red;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.blueBox {
+    background-color: lightskyblue;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.yellowBox {
+    background-color: yellow;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}

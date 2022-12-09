@@ -1,0 +1,22 @@
+.foreground {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid coral
+}
+
+div {
+    background-image: url("./pictures/logo.jpg");
+    height: auto;
+    width: auto;
+}
+
+h1, h3{
+    text-align: center;
+}
+
+a{
+    color: brand;
+}

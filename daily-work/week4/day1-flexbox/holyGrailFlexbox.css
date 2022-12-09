@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header,footer {
+    background-color: lightskyblue;
+}
+
+.content {
+    background-color: lightcoral;
+    flex-grow: 6;
+}
+
+.menu {
+    background-color: plum;
+    flex-grow: 2;
+}
+
+
+.ads {
+    background-color: plum;
+    flex-grow: 2;
+}
+
+/* Makes this all one column for screens with width >= 600px */
+@media (width >= 600px) {
+    .middleBox {
+        display: flex;
+    }
+}

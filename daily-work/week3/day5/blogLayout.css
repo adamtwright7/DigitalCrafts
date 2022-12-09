@@ -1,0 +1,38 @@
+body {
+    display: grid;
+    grid-template-areas: 
+    "header header header leftHeader"
+    "main main main sidebar"
+    "main main main sidebar"
+    "main main main sidebar"
+    "footer footer footer footer";
+    max-width: 800px;
+}
+
+header {
+    grid-area: header;
+    background-color: gray;
+    padding: 10px;
+}
+
+.leftHeader {
+    grid-area: leftHeader;
+    background-color: gray;
+    place-items: center;
+}
+
+main {
+    grid-area: main;
+    place-items: center;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+footer {
+    grid-area: footer;
+    background-color: gray;
+    place-items: center;
+    padding: 10px;
+}

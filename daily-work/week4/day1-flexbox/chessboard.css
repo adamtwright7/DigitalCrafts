@@ -1,0 +1,32 @@
+:root {
+    --light: #ffce9e;
+    --dark: #d18a46;
+  }
+
+.oddRow,
+.evenRow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square{
+    display: flex;
+    height: 100px;
+    width: 100px;
+}
+
+.oddRow>.square:nth-of-type(even) {
+    background-color: var(--dark);
+}
+
+.oddRow>.square:nth-of-type(odd) {
+    background-color: var(--light);
+}
+
+.evenRow>.square:nth-of-type(even) {
+    background-color: var(--light);
+}
+
+.evenRow>.square:nth-of-type(odd) {
+    background-color: var(--dark);
+}

@@ -1,0 +1,26 @@
+nav{
+    display: flex;
+    background-color: lightskyblue;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-bar-item {
+    color: white;
+    padding: 10px 5px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-bar-item:first-child{
+    padding-left: 10px;
+}
+
+.nav-bar-menu {
+    display: flex;
+    list-style: none;
+    justify-content: right;
+}
