@@ -1,0 +1,16 @@
+.card {
+    display: grid;
+    border: 5px solid red;
+    background-color: gold;
+    margin: 10px;
+    height: 500px;
+    width: 400px;
+}
+
+
+
+h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
