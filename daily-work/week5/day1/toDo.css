@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto; 
+    height: auto;
+}
+
+button {
+    color: red;
+}
+
+.toDoItems{
+    text-align: right;
+}
