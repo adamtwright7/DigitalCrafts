@@ -4,11 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blackjack</title>
     <link rel="stylesheet" href="blackjack.css">
 </head>
+
 <body>
-    
-</body>
+    <!-- This is the Madam Eva background lolol -->
+    <video id="background-video" autoplay loop muted>
+        <source src="./Assets/Background.webm" type="video/webm">
+    </video> 
+
+    <div class="message-box" id="messages"></div>
+    <div class="table">
+      <div class="player">
+        <label class="player-name">Dealer Points: <span id="dealer-points" class="points"></span>
+        </label>
+        <div id="dealer-hand" class="hand">
+        </div>
+      </div>
+      <div class="player">
+        <label class="player-name">Player Points: <span id="player-points" class="points"></span>
+        </label>
+        <div id="player-hand" class="hand">
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="deal-button" type="button">Deal</button>
+        <button id="hit-button" type="button">Hit</button>
+        <button id="stand-button" type="button">Stand</button>
+      </div>
+    </div>
+  </body>
 <script src="blackjack.js"></script>
 </html>
