@@ -1,6 +1,17 @@
+// Assigning JS variables to all the interactable DOM elements 
 // I renamed the player and dealer hand with -DOM so I can track values elsewhere 
 const dealerHandDOM = document.getElementById("dealer-hand");
 const playerHandDOM = document.getElementById("player-hand");
+const dealButton = document.getElementById("deal-button")
+const hitButton = document.getElementById("hit-button");
+const standButton = document.getElementById("stand-button");
+const playAgainButton = document.getElementById("playAgain-button")
+playAgainButton.toggleAttribute("disabled") 
+const dealerPointsDOM = document.getElementById("dealer-points")
+const playerPointsDOM = document.getElementById("player-points")
+const messageBox = document.getElementById("messages")
+
+// initializing stuff 
 let playerHand = [];
 let dealerHand = [];
 let deck = [];
@@ -45,30 +56,28 @@ deck.push({suit: "Seer",rank: 10});
 
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
-  
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
-  
       // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
       // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
-  
     return array;
   }
 
-// Now we'll shuffle the cards when the page loads. 
+// Now we'll do stuff when the page loads.  
 window.addEventListener("DOMContentLoaded", () => {
-    deck = shuffle(deck) 
+    deck = shuffle(deck) // shuffles the deck of cards 
+    // disables the hit and stand buttons 
+    hitButton.toggleAttribute("disabled")
+    standButton.toggleAttribute("disabled")
 });
 
 // Dealing code. First, we'll make a function that deals 
 // the top card in the deck to the player we choose. 
-
 const dealTopCardTo = (playerOrDealer) => {
     if (playerOrDealer == "player"){
         // First, put the numeric card in the numeric array 
@@ -84,23 +93,145 @@ const dealTopCardTo = (playerOrDealer) => {
         dealerHand.push(newCardObj) 
         let newCardImg = document.createElement("img") 
         newCardImg.src = `./Assets/${newCardObj.rank}of${newCardObj.suit}.png`
+        newCardImg.className = "faceUp"
         dealerHandDOM.append(newCardImg) 
     }
 }
 
-const dealButton = document.getElementById("deal-button")
+// Now we need a function to flip the dealer's first card. 
+const flipFirstDealerCard = () => {
+    // This should flip the first card to its front side 
+    if (dealerHandDOM.firstElementChild.className == "faceDown"){
+        dealerHandDOM.firstElementChild.src = `./Assets/${dealerHand[0].rank}of${dealerHand[0].suit}.png`
+        dealerHandDOM.firstElementChild.className = "faceUp"
+    } else { // flips the card to the back if it's face up. 
+        dealerHandDOM.firstElementChild.src = "./Assets/tarokkaBack.png"
+        dealerHandDOM.firstElementChild.className = "faceDown"
+    }
+}
+
+// When you click the deal button, it deals one card to the player, 
+// then dealer (then flips that card over), then player, then dealer.
 dealButton.addEventListener("click", () => {
     dealTopCardTo("player")
-    dealTopCardTo("dealer")
+    dealTopCardTo("dealer") 
+    flipFirstDealerCard()
     dealTopCardTo("player")
-    dealTopCardTo("dealer") // I'll figure out a way to deal this one face down in a bit 
-    // Figure out how to disable the deal button, then put it here. 
+    dealTopCardTo("dealer") 
+    dealButton.toggleAttribute("disabled") // disables the deal button
+    hitButton.toggleAttribute("disabled") // Enables the hit and stand button 
+    standButton.toggleAttribute("disabled")
+    // Updates everyone's totals and hides the dealer's total
+    updateTotal("player")
+    dealerPointsDOM.toggleAttribute("hidden")
+    updateTotal("dealer")
 });
 
+// Hit functionality 
+hitButton.addEventListener("click", () => {
+    dealTopCardTo("player")
+    updateTotal("player")
+})
 
+// Stand functionality. Just ends the game with the stand condition 
+standButton.addEventListener("click",() => {
+    endGameStand()
+})
 
-// Playing code 
+// A whole function to handle Aces? better believe it. 
 
+const dealWithAces = (inputArray) => {
+    let sumOfArray = inputArray.reduce((a, b) => a + b, 0)
+    if (sumOfArray > 21) {
 
+    } else {
+        
+    }
+}
+
+// Updates the total card value of either the player or dealer. Checks if the player busts. 
+let dealerTotal = 0;
+let playerTotal = 0;
+let playerValueArray = [];
+let dealerValueArray = [];
+const updateTotal = (playerOrDealer) => {
+    if (playerOrDealer == "player"){
+        playerTotal = 0; // just resets everything every time to be safe 
+        playerValueArray = [];
+        for (dealtCard of playerHand){
+            playerValueArray.push(dealtCard.rank)
+            // This is where ace functionality should be. Maybe it should sum the array too. 
+            playerTotal = playerValueArray.reduce((a, b) => a + b, 0) // sums the array 
+        }
+        playerPointsDOM.innerText = playerTotal
+        if (playerTotal > 21) {endGameBust("playerBust")}
+    } else { // does the same as above, but for the dealer 
+        dealerTotal = 0;
+        dealerValueArray = [];
+        for (dealtCard of dealerHand){
+            dealerValueArray.push(dealtCard.rank)
+            // This is where ace functionality should be 
+            dealerTotal = dealerValueArray.reduce((a, b) => a + b, 0)
+        }
+        dealerPointsDOM.innerText = dealerTotal
+        if (dealerTotal > 21) {endGameBust("dealerBust")}
+    }
+}
+
+// Function which ends the game by bust 
+const endGameBust = (playerOrDealer) => {
+    flipFirstDealerCard() // flips the first dealer's card 
+    dealerPointsDOM.toggleAttribute("hidden") // unhides the dealer total 
+    hitButton.toggleAttribute("disabled") // disables the hit and stand buttons 
+    standButton.toggleAttribute("disabled") 
+    if (playerOrDealer == "playerBust"){
+        winnerIs("dealer")
+    } else { // this must mean it's a dealer bust 
+        winnerIs("player")
+    } 
+}  
+
+// Function which ends the game by stand     
+const endGameStand = () => {
+    while (dealerTotal < 17){
+        dealTopCardTo("dealer")
+        updateTotal("dealer")
+    }
+    if ((dealerTotal < 22) && (playerTotal < 22)){
+        // If we're here, that means no one has bust and the dealer has 17 or higher. 
+        // This means we have to end the game properly and compare totals. 
+        flipFirstDealerCard() // flips the first dealer's card 
+        dealerPointsDOM.toggleAttribute("hidden") // unhides the dealer total 
+        hitButton.toggleAttribute("disabled") // disables the hit and stand buttons 
+        standButton.toggleAttribute("disabled") 
+        if (playerTotal > dealerTotal){
+            winnerIs("player")
+        } else { // dealer wins ties 
+            winnerIs("dealer")
+        }
+    }
+}
+
+// Player winning function 
+const winnerIs = (playerOrDealer) => {
+    if (playerOrDealer == "player"){
+        messageBox.innerText = "You won!"
+    }
+    else {
+        messageBox.innerText = "You lost."
+    }
+    playAgainButton.toggleAttribute("disabled") // Enables the play again button 
+}
+
+// Play again button functionality 
+playAgainButton.addEventListener("click", () => {location.reload()})
+
+// To-Do:
+// Make Ace functionality
+
+// Stretch goals: 
+// Add a play again button? 
+// maybe track games won?
+// betting feature 
 
 // BRB
