@@ -139,14 +139,13 @@ standButton.addEventListener("click",() => {
 })
 
 // A whole function to handle Aces? better believe it. 
-
-const dealWithAces = (inputArray) => {
-    let sumOfArray = inputArray.reduce((a, b) => a + b, 0)
-    if (sumOfArray > 21) {
-
-    } else {
-        
+const SumAndHandleAces = (inputArray,inputSum) => {
+    for (cardValue of inputArray){
+        if (cardValue == 1 && inputSum <= 11){ // For aces, if the total won't bust if the ace counts as 11. 
+            inputSum += 10 
+        }
     }
+    return [inputSum] // returns the new sum 
 }
 
 // Updates the total card value of either the player or dealer. Checks if the player busts. 
@@ -160,8 +159,8 @@ const updateTotal = (playerOrDealer) => {
         playerValueArray = [];
         for (dealtCard of playerHand){
             playerValueArray.push(dealtCard.rank)
-            // This is where ace functionality should be. Maybe it should sum the array too. 
             playerTotal = playerValueArray.reduce((a, b) => a + b, 0) // sums the array 
+            playerTotal = SumAndHandleAces(playerValueArray,playerTotal) // Handles Aces 
         }
         playerPointsDOM.innerText = playerTotal
         if (playerTotal > 21) {endGameBust("playerBust")}
@@ -170,8 +169,8 @@ const updateTotal = (playerOrDealer) => {
         dealerValueArray = [];
         for (dealtCard of dealerHand){
             dealerValueArray.push(dealtCard.rank)
-            // This is where ace functionality should be 
             dealerTotal = dealerValueArray.reduce((a, b) => a + b, 0)
+            dealerTotal = SumAndHandleAces(dealerValueArray,dealerTotal)
         }
         dealerPointsDOM.innerText = dealerTotal
         if (dealerTotal > 21) {endGameBust("dealerBust")}
@@ -226,12 +225,18 @@ const winnerIs = (playerOrDealer) => {
 // Play again button functionality 
 playAgainButton.addEventListener("click", () => {location.reload()})
 
-// To-Do:
-// Make Ace functionality
-
-// Stretch goals: 
-// Add a play again button? 
-// maybe track games won?
+// To-Do, Stretch goals: 
+// Track games won
 // betting feature 
 
 // BRB
+
+// keeping track of wins/losses 
+// localStorage.setItem("dealerWins",0)
+// localStorage.setItem("playerWins",0)
+
+// // incrementing wins/losses. For example, if the dealer wins: 
+// localStorage.setItem("dealerWins",localStorage.getItem("dealerWins")+1)
+
+// // playing with multiple decks
+// deck = deck*3 
