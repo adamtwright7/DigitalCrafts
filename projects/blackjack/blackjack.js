@@ -74,35 +74,11 @@ window.addEventListener("DOMContentLoaded", () => {
     // disables the hit and stand buttons 
     hitButton.toggleAttribute("disabled")
     standButton.toggleAttribute("disabled")
-    if (localStorage.getItem("dealerWins")){ // if there's already storage of wins, 
-        // load them.
-        let dealerWins = localStorage.getItem("dealerWins")
-        let playerWins = localStorage.getItem("playerWins")
-    } else { // if not, make those places in storage and start them at 0
-        console.log("else loading is running")
-        localStorage.setItem("dealerWins",0)
+    if (localStorage.getItem("dealerWins") == false){ // if there isn't already storage of wins,
+        localStorage.setItem("dealerWins",0) // start storing wins and set them to 0
         localStorage.setItem("playerWins",0)
-        let dealerWins = 0
-        let playerWins = 0  
     }
-    loadLocalStorage()
 });
-    
-
-const loadLocalStorage = () => {
-    if (localStorage.getItem("dealerWins")){ // if there's already storage of wins, 
-        // load them.
-        let dealerWins = localStorage.dealerWins
-        let playerWins = localStorage.playerWins
-        console.log(`dealer has won ${dealerWins} games.`)
-        console.log(`player has won ${playerWins} games.`)
-    } else { // if not, make those places in storage and start them at 0
-        localStorage.setItem("dealerWins",0)
-        localStorage.setItem("playerWins",0)
-        let dealerWins = 0
-        let playerWins = 0 
-}
-}
 
 // Dealing code. First, we'll make a function that deals 
 // the top card in the deck to the player we choose. 
@@ -243,11 +219,14 @@ const endGameStand = () => {
 const winnerIs = (playerOrDealer) => {
     if (playerOrDealer == "player"){
         messageBox.innerText = "You won!"
-        playerWins += 1
+        // increases and updates local storage 
+        localStorage.playerWins = parseInt(localStorage.playerWins) + 1
+        playerWinsDOM.innerText = localStorage.playerWins; 
     }
     else {
         messageBox.innerText = "You lost."
-        dealerWins += 1
+        localStorage.dealerWins = parseInt(localStorage.dealerWins) + 1
+        dealerWinsDOM.innerText = localStorage.dealerWins; 
     }
     playAgainButton.toggleAttribute("disabled") // Enables the play again button 
 }
@@ -263,15 +242,8 @@ const dealerWinsDOM = document.getElementById("dealer-wins");
 const playerWinsDOM = document.getElementById("player-wins");
 
 // player and dealer wins are grabbed from local storage when the page loads. 
-dealerWinsDOM.innerText = dealerWins;
-playerWinsDOM.innerText = playerWins; 
+playerWinsDOM.innerText = localStorage.playerWins; 
+dealerWinsDOM.innerText = localStorage.dealerWins;
 
 // betting feature 
 // playing with multiple decks
-
-
-// // incrementing wins/losses. For example, if the dealer wins: 
-// localStorage.setItem("dealerWins",localStorage.getItem("dealerWins")+1)
-
-// // playing with multiple decks
-// deck = deck*3 
