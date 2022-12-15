@@ -74,6 +74,10 @@ window.addEventListener("DOMContentLoaded", () => {
     // disables the hit and stand buttons 
     hitButton.toggleAttribute("disabled")
     standButton.toggleAttribute("disabled")
+    if (localStorage.getItem("dealerWins") == false){ // if there isn't already storage of wins,
+        localStorage.setItem("dealerWins",0) // start storing wins and set them to 0
+        localStorage.setItem("playerWins",0)
+    }
 });
 
 // Dealing code. First, we'll make a function that deals 
@@ -215,9 +219,14 @@ const endGameStand = () => {
 const winnerIs = (playerOrDealer) => {
     if (playerOrDealer == "player"){
         messageBox.innerText = "You won!"
+        // increases and updates local storage 
+        localStorage.playerWins = parseInt(localStorage.playerWins) + 1
+        playerWinsDOM.innerText = localStorage.playerWins; 
     }
     else {
         messageBox.innerText = "You lost."
+        localStorage.dealerWins = parseInt(localStorage.dealerWins) + 1
+        dealerWinsDOM.innerText = localStorage.dealerWins; 
     }
     playAgainButton.toggleAttribute("disabled") // Enables the play again button 
 }
@@ -225,18 +234,16 @@ const winnerIs = (playerOrDealer) => {
 // Play again button functionality 
 playAgainButton.addEventListener("click", () => {location.reload()})
 
-// To-Do, Stretch goals: 
-// Track games won
+// Stretch goals: ===========================================================
+// Track games won ----------------
+
+// get variables 
+const dealerWinsDOM = document.getElementById("dealer-wins");
+const playerWinsDOM = document.getElementById("player-wins");
+
+// player and dealer wins are grabbed from local storage when the page loads. 
+playerWinsDOM.innerText = localStorage.playerWins; 
+dealerWinsDOM.innerText = localStorage.dealerWins;
+
 // betting feature 
-
-// BRB
-
-// keeping track of wins/losses 
-// localStorage.setItem("dealerWins",0)
-// localStorage.setItem("playerWins",0)
-
-// // incrementing wins/losses. For example, if the dealer wins: 
-// localStorage.setItem("dealerWins",localStorage.getItem("dealerWins")+1)
-
-// // playing with multiple decks
-// deck = deck*3 
+// playing with multiple decks
