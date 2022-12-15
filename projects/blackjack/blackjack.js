@@ -74,6 +74,17 @@ window.addEventListener("DOMContentLoaded", () => {
     // disables the hit and stand buttons 
     hitButton.toggleAttribute("disabled")
     standButton.toggleAttribute("disabled")
+    if (localStorage.getItem("dealerWins")){ // if there's already storage of wins, 
+        // load them.
+        let dealerWins = localStorage.getItem("dealerWins")
+        let playerWins = localStorage.getItem("playerWins")
+    } else { // if not, make those places in storage and start them at 0
+        console.log("else loading is running")
+        localStorage.setItem("dealerWins",0)
+        localStorage.setItem("playerWins",0)
+        let dealerWins = 0
+        let playerWins = 0  
+    }
 });
 
 // Dealing code. First, we'll make a function that deals 
@@ -215,9 +226,11 @@ const endGameStand = () => {
 const winnerIs = (playerOrDealer) => {
     if (playerOrDealer == "player"){
         messageBox.innerText = "You won!"
+        playerWins += 1
     }
     else {
         messageBox.innerText = "You lost."
+        dealerWins += 1
     }
     playAgainButton.toggleAttribute("disabled") // Enables the play again button 
 }
@@ -225,15 +238,20 @@ const winnerIs = (playerOrDealer) => {
 // Play again button functionality 
 playAgainButton.addEventListener("click", () => {location.reload()})
 
-// To-Do, Stretch goals: 
-// Track games won
+// Stretch goals: ===========================================================
+// Track games won ----------------
+
+// get variables 
+const dealerWinsDOM = document.getElementById("dealer-wins");
+const playerWinsDOM = document.getElementById("player-wins");
+
+// player and dealer wins are grabbed from local storage when the page loads. 
+dealerWinsDOM.innerText = dealerWins;
+playerWinsDOM.innerText = playerWins; 
+
 // betting feature 
+// playing with multiple decks
 
-// BRB
-
-// keeping track of wins/losses 
-// localStorage.setItem("dealerWins",0)
-// localStorage.setItem("playerWins",0)
 
 // // incrementing wins/losses. For example, if the dealer wins: 
 // localStorage.setItem("dealerWins",localStorage.getItem("dealerWins")+1)
