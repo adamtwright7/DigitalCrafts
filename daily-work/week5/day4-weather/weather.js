@@ -1,7 +1,7 @@
 const searchButton = document.querySelector(".search");
 
 const getWeather = async () => {
-    const weatherInput = document.querySelector(".weather").value;
+    const weatherInput = document.querySelector("text").value;
     const weatherData = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=${weatherInput}&appid=`
     );
