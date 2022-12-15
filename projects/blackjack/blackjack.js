@@ -85,7 +85,24 @@ window.addEventListener("DOMContentLoaded", () => {
         let dealerWins = 0
         let playerWins = 0  
     }
+    loadLocalStorage()
 });
+    
+
+const loadLocalStorage = () => {
+    if (localStorage.getItem("dealerWins")){ // if there's already storage of wins, 
+        // load them.
+        let dealerWins = localStorage.dealerWins
+        let playerWins = localStorage.playerWins
+        console.log(`dealer has won ${dealerWins} games.`)
+        console.log(`player has won ${playerWins} games.`)
+    } else { // if not, make those places in storage and start them at 0
+        localStorage.setItem("dealerWins",0)
+        localStorage.setItem("playerWins",0)
+        let dealerWins = 0
+        let playerWins = 0 
+}
+}
 
 // Dealing code. First, we'll make a function that deals 
 // the top card in the deck to the player we choose. 
