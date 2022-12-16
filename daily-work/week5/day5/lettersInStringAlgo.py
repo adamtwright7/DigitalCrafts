@@ -17,13 +17,4 @@ def letterTally(inputString):
     # outside of the loop, wrap the output in an array. 
     return [output]
 
-    # if you want the output to be more array-like 
-    # arrayOutput = []
-    # for key,value in output.items(): 
-    #     arrayOutput.append(key) # unwraps the object into an array 
-    #     arrayOutput.append(":")
-    #     arrayOutput.append(value)
-    # return arrayOutput
-
 print(letterTally(testinput))
-
