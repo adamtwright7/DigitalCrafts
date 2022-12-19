@@ -1,0 +1,34 @@
+.moviePoster {
+    height: 300px;
+    width: auto;
+}
+
+.movieCard{
+    /* border: 3px solid cornflowerblue; */
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.movieCardCont{
+    /* border: 3px solid red; */
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.search{
+    display: grid;
+    place-items: center;
+    grid-template-columns: 100%;
+}
+
+.inputNbutton{
+    justify-content: space-between;
+}
