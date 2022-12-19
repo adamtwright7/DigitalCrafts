@@ -4,6 +4,9 @@ const movieCardCont = document.querySelector(".movieCardCont")
 
 const searchMovie = async () => {
     
+    // clear any existing content in the movie card container. 
+    movieCardCont.innerHTML = ""
+
     // Get what's inside the input field 
     const inputField = document.querySelector("input")
 
