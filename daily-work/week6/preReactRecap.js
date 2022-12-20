@@ -20,7 +20,6 @@ const searchMovie = async () => {
     const json = await rawData.json()
     const readableData = json.Search
 
-    console.log(readableData)
     // loop through the data, creating a new movie card for each movie 
 
     for (let movie of readableData){
@@ -28,35 +27,46 @@ const searchMovie = async () => {
         // create elements and give them classes 
         const movieCard = document.createElement("div")
         movieCard.className = "movieCard"
-        const moviePoster = document.createElement("img")
-        moviePoster.className = "moviePoster"
+        const poster = document.createElement("img")
+        poster.className = "poster"
+        const description = document.createElement("div")
+        description.className = "description"
         const title = document.createElement("h2")
-        const description = document.createElement("p")
-        const year = document.createElement("p")
+        const plot = document.createElement("p")
+        const details = document.createElement("p") // Where the year, runtime, and genre will go 
+        details.className = "details"
 
         // modify each movie card with the fetched data 
-        title.innerText = movie.Title
-        year.innerText = movie.Year 
-        moviePoster.src = movie.Poster 
+        title.innerText = movie.Title 
+        poster.src = movie.Poster
+
+        // put everything but the poster the description div
+        description.append(title,plot,details)
 
         // put everything in the movie card
-        movieCard.append(moviePoster,title,year)
+        movieCard.append(poster,description)
 
         // put the movie cards in their container 
         movieCardCont.append(movieCard)
 
-        // Do another call which gives imdb info, from which we can find the description  
+        // Do another call which gives imdb info, from which we can find the plot  
         // Get the URL for another call 
         const imdbID = movie.imdbID 
         const individualMovieURL = `http://www.omdbapi.com/?apikey=9faa7dec&i=${imdbID}`
 
-        // Make the API call with that URL 
-
+        // Make the API call with that URL to get more detailed information 
         const rawIndData = await fetch(individualMovieURL)
         const indJson = await rawIndData.json()
-        console.log(indJson)
-        description.innerText = indJson.Plot
-        movieCard.append(description)
+
+        // Add the plot 
+        plot.innerText = indJson.Plot
+        
+        // Add some details 
+        let year = movie.Year 
+        let genre = indJson.Genre
+        let rating = indJson.Rated
+        let runtime = indJson.Runtime 
+        details.innerText = year + "  |  " + genre + "  |  " + rating + "  |  " + runtime
     }   
 }
 

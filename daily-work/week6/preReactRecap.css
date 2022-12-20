@@ -1,20 +1,38 @@
-.moviePoster {
+.details{
+    font-size: 75%;
+}
+
+body{
+    background-color: #121212;
+}
+
+h1,h2,p{
+    color: aliceblue;
+    font-family: 'Roboto', Arial, Verdana, sans-serif;
+}
+
+.poster {
     height: 300px;
     width: auto;
+    overflow: hidden;
 }
 
 .movieCard{
-    /* border: 3px solid cornflowerblue; */
+    height: 320px;
     width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-direction: row;
+    background-color: black;
+    padding: 10px;
+}
+
+.description{
+    padding: 10px;
 }
 
 .movieCardCont{
-    /* border: 3px solid red; */
     display: flex;
     flex-direction: row;
     padding: 10px;
@@ -24,11 +42,35 @@
 }
 
 .search{
-    display: grid;
-    place-items: center;
-    grid-template-columns: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.searchButton{
+    background-color: #E50914;
+    height: 40px;
 }
 
 .inputNbutton{
-    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchField{
+    height: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    border: aliceblue solid 2px;
+    outline: none;
+    background: transparent;
+    color: aliceblue;
 }
