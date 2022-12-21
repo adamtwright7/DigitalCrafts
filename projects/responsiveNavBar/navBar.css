@@ -1,0 +1,20 @@
+:root{
+    font-family: 'Bebas Neue';
+    font-size: 16px;
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #e7902c;
+    --bg-black: #040404;
+}
+
+body{
+    color: black;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    /* 1 rem = 1 root element font size.*/
+    margin-left: 5rem; 
+}
