@@ -1,6 +1,7 @@
 // Select buttons
 const randomFullButton = document.querySelector(".randomFullPoem")
 const randomSonnetButton = document.querySelector(".randomSonnet")
+const randomHaikuButton = document.querySelector(".randomHaiku")
 
 // Select and make JS variables for the output area. 
 
@@ -11,6 +12,10 @@ const poem = document.querySelector(".poem")
 // First, we'll do a function that just gets a random poem. This is made simple by PoetryDB's "/random" call.
 
 const getRandPoem = async () => {
+
+    // Clear the results from last poem
+    poem.innerHTML = ""
+
     // Get the data from the API call
     const RandPoemRawData = await fetch("https://poetrydb.org/random")
     let readableRandPoemData = await RandPoemRawData.json()
