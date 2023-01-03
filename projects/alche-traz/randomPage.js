@@ -2,6 +2,8 @@
 const randomFullButton = document.querySelector(".randomFullPoem")
 const randomSonnetButton = document.querySelector(".randomSonnet")
 const randomHaikuButton = document.querySelector(".randomHaiku")
+const randomNumInput = document.querySelector("#randomNum")
+const randomNumButton = document.querySelector(".randomNum")
 
 // Select and make JS variables for the output area. 
 const attribution = document.querySelector(".attribution")
@@ -32,59 +34,43 @@ const getRandPoem = async () => {
     }
 }
 
-// Next, we'll do a random sonnet. 
-// It uses the /random call combined with the /linecount call to get 3 random poems, each of which is 3 lines,
-// then pulls a line each to make the full poem. This assumes that every 3-line poem in the database is a haiku
-// and the rhyme scheme is probably going to be very messed up. 
+// Next, we'll do a random sonnet/haiku. 
+// It uses the /random call combined with the /linecount call to get (some number -- say three for now) 3 random poems, each of which is 3 lines,
+// then pulls a line each to make the full poem. This assumes that every 3-line poem in the database is a haiku (or each 14-line poem a sonnet)
+// and the rhyme scheme is probably going to be very messed up. I think modern readers will tolerate messed up rhyme scheme/meter. 
 
-const getRandomHaiku = async () => {
-    
+const getRandomByNumLines = async (numLines) => {
+
     // Clear the results from last poem.
     poemText.innerHTML = ""
     attribution.innerHTML = ""
-    
-    // Get data from the API.
-    const randHaikuRawData = await fetch("https://poetrydb.org/random,linecount/3;3")
-    let readableRandHaikuData = await randHaikuRawData.json()
 
-    // Looping through each poem, 
-    counter = 0
-    for (let eachPoem of readableRandHaikuData){
-
-        // Adding attribution for each poem 
-        let attributionLine = document.createElement("h2")
-        attributionLine.innerText = `Line ${counter+1} is ${eachPoem.title} by ${eachPoem.author}`
+    // ignore inputs that are too high or too low 
+    if ((numLines > 40) || (numLines < 2) || (!Number.isInteger(numLines))){
+        let attributionLine = document.createElement("h3") 
+        attributionLine.innerText = `Sorry, not enough poems of the linecount you've selected exist. Try a different line count -- most multiples of 4 between 4 and 40 work!`
         attribution.append(attributionLine)
-
-        // Adding the plaintext of each poem
-        let line = document.createElement("p")
-        line.innerText = eachPoem.lines[counter]
-        poemText.append(line)
-
-        // and increment the counter. 
-        counter ++ 
+        return
     }
-}
 
-// Next, we'll do a random sonnet. This uses the same methods and assumptions as the haiku function above, 
-// but with 14 lines. I literally just switched 3 for 14 and renamed variables. 
-
-const getRandSonnet = async () => {
-    
-    // Clear the results from last poem.
-    poemText.innerHTML = ""
-    attribution.innerHTML = ""
-    
     // Get data from the API.
-    const randSonnetRawData = await fetch("https://poetrydb.org/random,linecount/14;14")
-    let readableRandSonnetData = await randSonnetRawData.json()
+    const randNumRawData = await fetch(`https://poetrydb.org/random,linecount/${numLines};${numLines}`)
+    let readableRandNumData = await randNumRawData.json()
+
+    // ignore inputs that are dynamically too high. This will ignore 39 for example. 
+    if (numLines > readableRandNumData.length){
+        let attributionLine = document.createElement("h3") 
+        attributionLine.innerText = `Sorry, not enough poems of the linecount you've selected exist. Try a different line count -- most multiples of 4 between 4 and 40 work!`
+        attribution.append(attributionLine)
+        return
+    }
 
     // Looping through each poem, 
     counter = 0
-    for (let eachPoem of readableRandSonnetData){
+    for (let eachPoem of readableRandNumData){
 
         // Adding attribution for each poem 
-        let attributionLine = document.createElement("h2")
+        let attributionLine = document.createElement("h3") // Making these h3 because there's a lot of them 
         attributionLine.innerText = `Line ${counter+1} is ${eachPoem.title} by ${eachPoem.author}`
         attribution.append(attributionLine)
 
@@ -100,5 +86,11 @@ const getRandSonnet = async () => {
 
 // Add event listeners 
 randomFullButton.addEventListener("click",getRandPoem)
-randomSonnetButton.addEventListener("click",getRandSonnet)
-randomHaikuButton.addEventListener("click",getRandomHaiku)
+randomSonnetButton.addEventListener("click",() => getRandomByNumLines(14))
+randomHaikuButton.addEventListener("click",() => getRandomByNumLines(3))
+randomNumButton.addEventListener("click", () => getRandomByNumLines(parseInt(randomNumInput.value)))
+randomNumInput.addEventListener("keypress", (e) => {
+    if (e.key == "Enter"){
+        getRandomByNumLines(parseInt(randomNumInput.value))
+    }
+})

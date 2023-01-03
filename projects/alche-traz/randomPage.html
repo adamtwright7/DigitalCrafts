@@ -8,11 +8,17 @@
 </head>
 <body>
     
+    Go back <a href="./homePage.html">home.</a>
+
     <!-- buttons to get random poems. Animate these later? -->
     <div class="randomButtons"> 
         <button class="randomFullPoem"> Get a random poem. </button>
-        <button class="randomSonnet"> Get a sonnet with each line comprised of a different poem.</button>
-        <button class="randomHaiku"> Get a haiku with each line comprised of a different poem.</button>
+        <button class="randomSonnet"> Generate a sonnet with each line taken from a different poem.</button>
+        <button class="randomHaiku"> Generate a haiku with each line taken from a different poem.</button>
+        
+        <label for="randomNum"> Generate a poem of a set number of lines (up to 40), with each line taken from a different poem. Try entering "4" for a quick quatrain! </label>
+        <input id="randomNum" placeholder="Enter a number of lines, using numerals..."> </input>
+        <button class="randomNum"> Generate! </button>
     </div>
 
     <div class="randResults">
