@@ -12,7 +12,7 @@ const randByAuthorInput = document.querySelector("#randByAuthor")
 const randByAuthorButton = document.querySelector(".randByAuthor")
 
 // Select and make JS variables for the output area. 
-const results = document.querySelector(".searchResults")
+const results = document.querySelector("#searchResults")
 
 // A function that actually does all the searching:
 const search = async (mode) => { 

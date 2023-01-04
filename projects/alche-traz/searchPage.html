@@ -9,11 +9,15 @@
 </head>
 <body>
 
-    <a href="./homePage.html">
-        <img src="./assets/home.png" alt="Home Icon" class="block mx-auto w-[40vw]">
-    </a>
+    <!-- Nav bar with just the homepage -->
+    <div class="bg-blackBlue w-screen">
+        <a href="./homePage.html">
+            <img src="./assets/home.png" alt="Home Icon" class= "block mx-auto max-h-[10vh]">
+        </a>
+    </div>
+
     
-    <div class="searchButtons" class="bg-lightBlue"> 
+    <div class="bg-lightBlue p-4 flex-col gap-4 gap-y-8 text-whiteBlue"> 
 
         <label for="allByTitle">Search all poems by title. Try searching "fragment"!</label>
         <br>
@@ -41,7 +45,7 @@
     </div>
 
     <!-- No extra divs here because I want the attributions to be next to each poem. -->
-    <div class="searchResults" class="bg-darkBlue"> 
+    <div id="searchResults" class="bg-darkBlue p-1"> 
         
     </div>
 
