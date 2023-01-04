@@ -5,59 +5,123 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alche-traz Home</title>
-    <link rel="stylesheet" href="alchetraz.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- Font stuff -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caramel&family=Gothic+A1:wght@100&family=Mansalva&display=swap" rel="stylesheet">
 </head>
 <body>
     
-    <nav>
+    <div class="bg-blackBlue">
 
-        <!-- These two images overlaid should be the logo, which should stick together, and stay at the top of the page when you scroll. -->
-        <img class="logo" src="./assets/bars.png" alt="">
-        <img class="logo" src="./assets/potion.png" alt="">
+        <nav class="relative container bg-lightBlue">
+            
+            <h1 class="text-center text-4xl" style="font-family: 'Mansalva', cursive"> 
+                Alche-traz
+            </h1>
+            <h3 class="text-center text-2xl" style="font-family: 'Caramel', cursive;">
+                mixing bars for your inspiration
+            </h3>
 
-        Looking for something? 
-        <a href="./searchPage.html">Search here!</a>
-        <img src="./assets/search.png" alt="Search Icon">
+            <!-- These two images overlaid should be the logo, which should stick together and stay at the left of the navbar -->
+            <div class="flex items-center justify-center">
+                <img class="relative" src="./assets/bars.png" alt="">
+                <img class="absolute" src="./assets/potion.png" alt="">
+            </div>
+            
+            <!-- Menu items that will send you to new pages -->
+            <div class="flex justify-between">
+                <a href="./searchPage.html" class="hover:shadow-lg rounded-full">
+                    <img src="./assets/search.png" alt="Search Icon">
+                </a>
+                
+                <a href="./moodboard.html" class="hover:shadow-lg rounded-full">
+                    <img src="./assets/moodboard.png" alt="Moodboard Icon">
+                </a>
+                
+                <a href="./randomPage.html" class="hover:shadow-lg rounded-full">  
+                    <img src="./assets/dice.png" alt="Random Icon">
+                </a>
+            </div>
+            
+        </nav>
 
-        Need some inspiration?
-        <a href="./randomPage.html">  Get a random poem! </a>
-        <img src="./assets/dice.png" alt="Random Icon">
-
-    </nav>
-
-    <p class="attribution"> 
         
-        Powered by Thundercomb's <a href="https://github.com/thundercomb/poetrydb"> poetry database. </a>
-
-        <br>
-
-        The logo at the top of the page is two overlain icons from The Noun Project: "five" and "potion".
         
-        The bars icon is 
-        <a href="https://thenounproject.com/icon/five-655299/">“five”</a>
-        from W. X. Chee.
+        
+        <p class="text-whiteBlue"> 
+            
+            Looking for something? Tap the search icon above or click <a href="./searchPage.html">here</a> to search poems by author or title. 
+            
+            <br>
 
-        <br>
+            Need some inspiration? Get a random poem by tapping the dice above or clicking <a href="./randomPage.html">here</a>.
 
-        The potion icon is
-        <a href="https://thenounproject.com/icon/potion-2809666/">“potion”</a>
-        from Blaise Sewell.  
+            <br>
 
-        <br>
+            <strong class="text-center"> About </strong>
 
-        The search icon is 
-        <a href="https://thenounproject.com/icon/search-1072503/">"Search"</a>
-        from AliWijaya. 
+            <br>
 
-        <br>
+            This is a frontend framework for Thundercomb's <a href="https://github.com/thundercomb/poetrydb"> poetry database. </a>
+            
+            <br>
+            
+            The logo at the top of the page is two overlain icons from The Noun Project: "five" and "potion".
+            
+            The bars icon is 
+            <a href="https://thenounproject.com/icon/five-655299/">“five”</a>
+            from W. X. Chee.
+            
+            <br>
+            
+            The potion icon is
+            <a href="https://thenounproject.com/icon/potion-2809666/">“potion”</a>
+            from Blaise Sewell.  
+            
+            <br>
+            
+            The navbar contains three more icrons from The Noun Project: 
+            
+            <br>
+            
+            The search icon is 
+            <a href="https://thenounproject.com/icon/search-1072503/">"Search"</a>
+            from AliWijaya. 
+            
+            <br>
+            
+            The dice icon is 
+            <a href="https://thenounproject.com/icon/dice-1765632/">"Dice"</a>
+            by Andy Ivandikov. 
+            
+            <br>
+            
+            The moodboard icon is 
+            <a href="https://thenounproject.com/icon/moodboard-1561648/">"moodboard"</a>
+            by Bê Sabino.
+            
+            <br>
+            
+            Each page has a home icon, which is 
+            <a href="https://thenounproject.com/icon/home-5392655/">"Home"</a>
+            by Neneng Fadliyah.
+            
+            <br>
 
-        The dice icon is 
-        <a href="https://thenounproject.com/icon/dice-1765632/">"Dice"</a>
-        by Andy Ivandikov. 
+            This site's color palette is 
+            <a href="https://www.canva.com/colors/color-palettes/mermaid-lagoon/">"Mermaid Lagoon"</a>
+            from Canva. 
 
-    </p>
+            <br>
 
+            Oh yeah! I made this. Adam Wright.
 
-</body>
-<script src="alchetraz.js"></script>
-</html>
+        </p>
+        
+    </div>
+        
+    </body>
+    <script src="alchetraz.js"></script>
+    </html>

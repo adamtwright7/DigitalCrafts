@@ -38,7 +38,6 @@ const search = async (mode) => {
     const searchRawData = await fetch(url)
     let searchData = await searchRawData.json()
     
-    console.log(searchData)
     // If searchData isn't an array, nothing matched the search and we need to tell the user and stop the code. 
     if (!Array.isArray(searchData)) {
         let attributionLine = document.createElement("h3") 
