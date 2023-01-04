@@ -9,48 +9,46 @@
     <!-- Font stuff -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caramel&family=Gothic+A1:wght@100&family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caramel&family=Gothic+A1:wght@400&family=Mansalva&display=swap" rel="stylesheet">
 </head>
 <body>
     
-    <div class="bg-blackBlue">
-
-        <nav class="relative container bg-lightBlue">
+    <!-- Main container that I can mess with instead of <body> -->
+    <div class="bg-lightBlue"> 
+        <nav class="relative container">
             
             <h1 class="text-center text-4xl" style="font-family: 'Mansalva', cursive"> 
                 Alche-traz
             </h1>
-            <h3 class="text-center text-2xl" style="font-family: 'Caramel', cursive;">
+            
+            <!-- These two images overlaid should be the logo, which should stick together and stay at the top of the page -->
+            <div class="flex items-center justify-center m-20">
+                <img class="relative w-[70vw] sm:w-[40vh] md:w-fit md:py-16" src="./assets/bars.png" alt="bars icon">
+                <img class="absolute w-[70vw] sm:w-[40vh] md:w-fit md:py-16" src="./assets/potion.png" alt="potion icon">
+            </div>
+
+            <h3 class="text-center text-3xl" style="font-family: 'Caramel', cursive;">
                 mixing bars for your inspiration
             </h3>
-
-            <!-- These two images overlaid should be the logo, which should stick together and stay at the left of the navbar -->
-            <div class="flex items-center justify-center">
-                <img class="relative" src="./assets/bars.png" alt="">
-                <img class="absolute" src="./assets/potion.png" alt="">
-            </div>
-            
-            <!-- Menu items that will send you to new pages -->
-            <div class="flex justify-between">
-                <a href="./searchPage.html" class="hover:shadow-lg rounded-full">
-                    <img src="./assets/search.png" alt="Search Icon">
-                </a>
-                
-                <a href="./moodboard.html" class="hover:shadow-lg rounded-full">
-                    <img src="./assets/moodboard.png" alt="Moodboard Icon">
-                </a>
-                
-                <a href="./randomPage.html" class="hover:shadow-lg rounded-full">  
-                    <img src="./assets/dice.png" alt="Random Icon">
-                </a>
-            </div>
-            
         </nav>
-
         
-        
-        
-        <p class="text-whiteBlue"> 
+        <!-- Menu items that will send you to new pages -->
+        <div class="flex justify-between">
+            <a href="./searchPage.html" class="hover:shadow-lg rounded-full">
+                <img src="./assets/search.png" alt="Search Icon">
+            </a>
+            
+            <a href="./moodboard.html" class="hover:shadow-lg rounded-full">
+                <img src="./assets/moodboard.png" alt="Moodboard Icon">
+            </a>
+            
+            <a href="./randomPage.html" class="hover:shadow-lg rounded-full">  
+                <img src="./assets/dice.png" alt="Random Icon">
+            </a>
+        </div>
+            
+        <!-- instructions -->
+        <p class="text-whiteBlue text-center" style="font-family: 'Gothic A1', sans-serif;"> 
             
             Looking for something? Tap the search icon above or click <a href="./searchPage.html">here</a> to search poems by author or title. 
             
@@ -60,7 +58,13 @@
 
             <br>
 
-            <strong class="text-center"> About </strong>
+            Feelin' some typa way? Visit the moodboard by tapping the center icon above or clicking <a href="./moodboard.html">here</a>.
+
+        </p>
+
+        <!-- About -->
+        <div class="text-whiteBlue bg-blackBlue" style="font-family: 'Bebas Neue', cursive;">
+            <p class="text-center text-xl font-bold mt-4 underline"> About </p>
 
             <br>
 
@@ -118,8 +122,7 @@
 
             Oh yeah! I made this. Adam Wright.
 
-        </p>
-        
+        </div>
     </div>
         
     </body>

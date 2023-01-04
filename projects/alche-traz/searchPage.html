@@ -5,38 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Poems</title>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 
     <a href="./homePage.html">
-        <img src="./assets/home.png" alt="Home Icon">
+        <img src="./assets/home.png" alt="Home Icon" class="block mx-auto w-[40vw]">
     </a>
     
-    <div class="searchButtons"> 
+    <div class="searchButtons" class="bg-lightBlue"> 
 
-        <label for="allByTitle">Search all poems by title. Try searching "death" or "love"!</label>
+        <label for="allByTitle">Search all poems by title. Try searching "fragment"!</label>
+        <br>
         <input id="allByTitle" placeholder="Enter title..." > </input>
         <button class="allByTitle"> Search! </button>
 
         <br>
-        <label for="randByTitle">Get a random poem by title. Try searching for "sonnet" or "fragment"!</label>
+        <label for="randByTitle">Get a random poem by title. Try searching "ode"!</label>
+        <br>
         <input id="randByTitle" placeholder="Enter title..." > </input>
         <button class="randByTitle"> Search! </button>
 
         <br>
         <label for="allByAuthor"> Search all poems by author. Try searching for "Shelley" or "Poe"! </label>
+        <br>
         <input id="allByAuthor" placeholder="Enter author..." > </input>
         <button class="allByAuthor"> Search! </button>
 
         <br>
         <label for="randByAuthor"> Get a random poem by author. Try searching for "Shakespeare" or "Byron"!</label>
+        <br>
         <input id="randByAuthor" placeholder="Enter author..." > </input>
         <button class="randByAuthor"> Search! </button>
 
     </div>
 
     <!-- No extra divs here because I want the attributions to be next to each poem. -->
-    <div class="searchResults"> 
+    <div class="searchResults" class="bg-darkBlue"> 
         
     </div>
 
