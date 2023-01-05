@@ -10,43 +10,46 @@
 <body>
 
     <!-- Nav bar with just the homepage -->
-    <div class="bg-blackBlue w-screen">
+    <div class="bg-darkBlue w-screen">
         <a href="./homePage.html">
             <img src="./assets/home.png" alt="Home Icon" class= "block mx-auto max-h-[10vh]">
         </a>
     </div>
-
     
-    <div class="bg-lightBlue p-4 flex-col gap-4 gap-y-8 text-whiteBlue"> 
+    <div class="bg-lightBlue p-4 text-whiteBlue text-center"> 
 
-        <label for="allByTitle">Search all poems by title. Try searching "fragment"!</label>
+        <label for="allByTitle">Search all poems by title.</label>
         <br>
+        <p class="text-sm">Hint: Try searching "fragment"!</p>
         <input id="allByTitle" placeholder="Enter title..." > </input>
         <button class="allByTitle"> Search! </button>
 
         <br>
-        <label for="randByTitle">Get a random poem by title. Try searching "ode"!</label>
+        <label for="randByTitle">Get a random poem by title.</label>
         <br>
+        <p class="text-sm">Hint: Try searching "ode"!</p>
         <input id="randByTitle" placeholder="Enter title..." > </input>
         <button class="randByTitle"> Search! </button>
 
         <br>
-        <label for="allByAuthor"> Search all poems by author. Try searching for "Shelley" or "Poe"! </label>
+        <label for="allByAuthor"> Search all poems by author. </label>
         <br>
+        <p class="text-sm">Hint: Try searching "Shelley" or "Poe"!</p>
         <input id="allByAuthor" placeholder="Enter author..." > </input>
         <button class="allByAuthor"> Search! </button>
 
         <br>
-        <label for="randByAuthor"> Get a random poem by author. Try searching for "Shakespeare" or "Byron"!</label>
+        <label for="randByAuthor"> Get a random poem by author.</label>
         <br>
+        <p class="text-sm">Hint: Try searching "Shakespeare" or "Byron"!</p>
         <input id="randByAuthor" placeholder="Enter author..." > </input>
         <button class="randByAuthor"> Search! </button>
 
     </div>
 
     <!-- No extra divs here because I want the attributions to be next to each poem. -->
-    <div id="searchResults" class="bg-darkBlue p-1"> 
-        
+    <div id="searchResults" class="bg-darkBlue p-1 min-h-screen"> 
+        <h2> No results yet... </h2>
     </div>
 
 </body>

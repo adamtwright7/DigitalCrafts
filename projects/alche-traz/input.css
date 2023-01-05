@@ -11,7 +11,7 @@ button{
 }
 
 input{
-    border-radius: .75rem;
+    border-radius: .5rem;
     background-color: #145DA0;
 }
 
@@ -25,12 +25,12 @@ button{
 h2,
 h3{
     font-family: 'Bebas Neue';
-    color: #0C2D48;
     font-size: 1.25rem;
     line-height: 1.75rem;
 }
 
 #searchResults{
     color: #2E8BC0;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Bebas Neue';
+    color: #B1D4E0;
 }
