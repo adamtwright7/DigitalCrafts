@@ -10,12 +10,16 @@ module.exports = {
       xl: '1440px'
     },    
     extend: {
+      backgroundImage: {
+        'skull': "url('../assets/skull.jpg')",
+        'heart': "url('../assets/heart.jpg')"
+      },
       colors: {
         blackBlue: '#0C2D48',
         darkBlue: '#145DA0',
         lightBlue: '#2E8BC0',
         whiteBlue: '#B1D4E0'
-      }
+      },
     },
   },
   plugins: [],

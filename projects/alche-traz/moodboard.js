@@ -1,11 +1,9 @@
 // Select buttons
 const loveButton = document.querySelector("#love")
 const deathButton = document.querySelector("#death")
-const allByAuthorButton = document.querySelector(".allByAuthor")
-const randByAuthorButton = document.querySelector(".randByAuthor")
 
 // Select and make JS variables for the output area. 
-const results = document.querySelector("#results")
+const results = document.querySelector("#searchResults")
 
 // A function that actually does all the searching:
 const search = async (keyword) => { 
@@ -17,14 +15,7 @@ const search = async (keyword) => {
     url = `https://poetrydb.org/title,random/${keyword};1`
     const searchRawData = await fetch(url)
     let searchData = await searchRawData.json()
-    
-    // If searchData isn't an array, nothing matched the search and we need to tell the user and stop the code. 
-    if (!Array.isArray(searchData)) {
-        let attributionLine = document.createElement("h2") 
-        attributionLine.innerText = "Sorry, nothing matched your search."
-        results.append(attributionLine)
-        return 
-    }
+    searchData = searchData[0]
 
     // Adding attribution
     let attributionLine = document.createElement("h2") 
@@ -37,12 +28,18 @@ const search = async (keyword) => {
         lineHolder.innerText = line
         results.append(lineHolder)
     }
+
+    // Styling the board 
+    if (keyword == 'love'){
+        // removes the background color, creates a background picture, and resizes the background.
+        results.className = "p-1 min-h-screen bg-heart bg-contain"
+    }
+    if (keyword == 'death'){
+        results.className = "p-1 min-h-screen bg-skull bg-contain"
+    }
 }
 
 // Add event listeners for every button.
 
 loveButton.addEventListener("click",() => search('love'))
 deathButton.addEventListener("click",() => search('death'))
-
-allByAuthorButton.addEventListener("click",() => search(allByAuthor))
-randByAuthorButton.addEventListener("click",() => search(randByAuthor))
