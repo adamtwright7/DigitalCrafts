@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+<div class="d-flex justify-content-around align-items-center">
+  <h1>
+    <%= me.name %> 
+  </h1>
+  <h2 class="text-danger-emphasis">
+    <%= me.occupation %>
+  </h2>
+</div>
+
+<div class="row">
+  <div class="col justify-content-center">
+    <img class="m-auto d-block" src= <%= me.pic%> alt="">
+  </div>
+  <div class="col">
+    <p> Guys, adam's real great. here's some filler text: Scenester fingerstache forage air plant poke lumbersexual vape hell of chillwave irony. Palo santo bruh fit, vinyl cred tumblr kale chips prism intelligentsia master cleanse jean shorts hexagon. Man bun franzen humblebrag, shoreditch live-edge whatever air plant occupy kickstarter iPhone letterpress roof party tbh thundercats normcore. Skateboard vegan tumblr, thundercats woke twee readymade selfies vexillologist godard squid truffaut.
+
+      Sartorial chambray chillwave art party. Celiac selfies lomo try-hard kinfolk. Pitchfork jean shorts vibecession, freegan gatekeep seitan fanny pack food truck deep v trust fund taxidermy. Vexillologist kale chips VHS sartorial, typewriter messenger bag plaid celiac wayfarers sus disrupt sriracha polaroid big mood. Disrupt hella chartreuse, blog tilde af crucifix trust fund stumptown tonx hell of coloring book.
+      
+      Drinking vinegar bicycle rights vibecession banh mi microdosing. Wayfarers shoreditch dreamcatcher beard schlitz blog green juice bespoke photo booth tonx franzen chartreuse. Tofu gentrify pork belly food truck iPhone. Ascot gatekeep master cleanse fam Brooklyn. Hexagon mumblecore sustainable raclette, fixie humblebrag cornhole cronut kinfolk yuccie. Dreamcatcher skateboard pinterest ascot vexillologist hashtag ramps normcore master cleanse glossier beard microdosing forage taxidermy man braid.
+      
+      Beard kale chips truffaut banh mi, bicycle rights single-origin coffee fit slow-carb. Tote bag bodega boys pour-over you probably haven't heard of them coloring book, yuccie helvetica. YOLO coloring book four loko beard bitters hammock locavore vaporware sriracha. Truffaut cronut ugh, everyday carry vegan cornhole pop-up hexagon messenger bag tumblr praxis tousled. </p>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
