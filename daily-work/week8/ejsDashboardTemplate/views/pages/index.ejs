@@ -3,7 +3,7 @@
 <head>
   <%- include('../partials/head'); %>
 </head>
-<body class="grid grid-cols-[1fr,9fr] h-full">
+<body class="grid grid-cols-[1fr,9fr] h-full bg-gray-300">
   <nav class="h-full bg-cyan-400 text-white flex flex-col gap-4 p-4">
     <p>Home</p>
     <p>Team</p>
@@ -17,24 +17,26 @@
   
   <div id="non-nav" class="m-4">
   
-  <p class="font-bold text-xl text-center p-4"> Totals </p>
-  <div class="grid grid-cols-3 grid-flow-row underline font-semibold text-center">
-    <p> Total Account Balance </p>
-    <p> Total Pending </p>
-    <p> Total Processed </p>
+  <p class="font-bold text-xl text-center p-4"> Overview </p>
+  <div class="grid grid-cols-3 grid-flow-row font-semibold text-center bg-white shadow-lg">
+    <div>
+      <p> Total Account Balance </p>
+      <p> <%= accountBalance.amount %> </p>
+    </div>
+    <div>
+      <p> Total Pending </p>
+      <p> <%= pending.amount %> </p>
+    </div>
+    <div>
+      <p> Total Processed </p>
+      <p> <%= processedData.amount %> </p>
+    </div>
   </div>
-
-  <div class="grid grid-cols-3 grid-flow-row text-center">
-    <p> <%= accountBalance.amount %> </p>
-    <p> <%= pending.amount %> </p>
-    <p> <%= processedData.amount %> </p>
-  </div>
-
 <br>
 <hr>
 
-  <p class="font-bold text-xl text-center p-4"> Overview </p>
-  <div id="firstLine" class="grid grid-cols-4 grid-flow-row underline font-semibold">
+  <p class="font-bold text-xl text-center p-4"> Recent Activity </p>
+  <div id="firstLine" class="grid grid-cols-4 grid-flow-row underline font-semibold bg-white shadow-lg">
     <p> Name </p>
     <p> Transaction </p>
     <p> Company </p>
