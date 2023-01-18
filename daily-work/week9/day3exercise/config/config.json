@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "GaladaerosTheFlame!",
+    "database": "clinic_example",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "GaladaerosTheFlame!",
+    "database": "clinic_test",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "GaladaerosTheFlame!",
+    "database": "clinic_production",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
