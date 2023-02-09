@@ -1,9 +1,54 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createClient } from "@supabase/supabase-js";
+const supabaseUrl = "https://ruuwcpnrzznakaolxacc.supabase.co";
+const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNDA1Njg0NiwiZXhwIjoxOTQ5NjMyODQ2fQ.G4A-G6QMJ_mVnSFjAu6UfU5hx8a4IMC2ENO2qli1eT4";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 function App() {
-  const [signUpForm, setSignUpForm] = useState();
+  const [signUpForm, setSignUpForm] = useState({ veteran: false });
+
+  const fetchData = async () => {
+    let { data, error } = await supabase
+      .from("reactUserData")
+      .select("firstName");
+    console.log(data);
+    console.log(error);
+  };
+  async function pushForm(signUpForm) {
+    const {
+      veteran,
+      firstName,
+      lastName,
+      city,
+      state,
+      username,
+      ethnicity,
+      zip,
+      ageGroup,
+      address,
+    } = signUpForm;
+    fetchData();
+    const { data, error } = await supabase.from("reactUserData").insert([
+      {
+        id: "299464e4-a8c0-11ed-afa1-0242ac120002",
+        username,
+        veteran,
+        firstName,
+        lastName,
+        city,
+        state,
+        ethnicity,
+        zip,
+        ageGroup,
+        address,
+      },
+    ]);
+    console.log(data);
+    console.log(error);
+  }
 
   const setFormState = (e) => {
     setSignUpForm({
@@ -12,20 +57,29 @@ function App() {
     });
   };
 
+  const toggleVetStatus = () => {
+    setSignUpForm((signUpForm) => {
+      return { ...signUpForm, veteran: !signUpForm.veteran };
+    });
+  };
+
   const authentication = () => {
     if (signUpForm?.username?.length < 6 || signUpForm?.username?.length > 14) {
       toast("Enter a username with 6-14 characters, inclusive.");
+      return;
     }
     if (signUpForm?.zip?.length !== 5) {
       toast("Enter a 5-digit zip code.");
-      console.log("incorrect zip");
+      return;
     }
     if (
       signUpForm?.ageGroup?.length !== 3 ||
       signUpForm?.ageGroup?.slice(-1) !== "s"
     ) {
       toast("Enter your age group, like so: 30s");
+      return;
     }
+    pushForm(signUpForm);
   };
 
   return (
@@ -155,6 +209,7 @@ function App() {
                 type="checkbox"
                 name="veteran"
                 value={true}
+                onClick={toggleVetStatus}
               />
             </div>
             <div className="mb-6 flex">
