@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [signUpForm, setSignUpForm] = useState({});
@@ -29,6 +30,18 @@ function App() {
 
   return (
     <div class="bg-[#D44D78] h-screen">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <div class="mx-auto pt-10 w-[50vw] bg-[#1D2355] shadow-xl hover:shadow-2xl">
         <div className="mx-auto max-w-md">
           <p class="text-white text-center font-semibold text-2xl">
@@ -81,7 +94,7 @@ function App() {
               <button
                 className="bg-[#D44D78] text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline mx-auto p-4"
                 type="button"
-                onClick={authentication()}
+                onClick={authentication}
               >
                 SUBMIT
               </button>
