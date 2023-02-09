@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [signUpForm, setSignUpForm] = useState({});
+  const [signUpForm, setSignUpForm] = useState();
 
   const setFormState = (e) => {
     setSignUpForm({
@@ -22,14 +22,14 @@ function App() {
     }
     if (
       signUpForm?.ageGroup?.length !== 3 ||
-      signUpForm.ageGroup.slice(-1) !== "s"
+      signUpForm?.ageGroup?.slice(-1) !== "s"
     ) {
       toast("Enter your age group, like so: 30s");
     }
   };
 
   return (
-    <div class="bg-[#D44D78] h-screen">
+    <div class="bg-[#D44D78] min-h-screen">
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -47,7 +47,7 @@ function App() {
           <p class="text-white text-center font-semibold text-2xl">
             CONTACT FORM
           </p>
-          <form className="shadow-md rounded p-8 my-4">
+          <form className="shadow-md rounded p-8">
             <div className="mb-4 flex">
               <img src="../public/profile.jpg" />
               <input
@@ -59,7 +59,102 @@ function App() {
                 onChange={(e) => {
                   setFormState(e);
                 }}
-                value={signUpForm.username ? signUpForm.username : ""}
+                value={signUpForm?.username ? signUpForm?.username : ""}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <img src="../public/profile.jpg" />
+              <input
+                className="border-b-slate-600 border-b-2 bg-inherit w-full p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="firstName"
+                type="text"
+                name="firstName"
+                placeholder="Enter Your First Name"
+                onChange={(e) => {
+                  setFormState(e);
+                }}
+                value={signUpForm?.firstName ? signUpForm?.firstName : ""}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <img src="../public/profile.jpg" />
+              <input
+                className="border-b-slate-600 border-b-2 bg-inherit w-full p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="lastName"
+                type="text"
+                name="lastName"
+                placeholder="Enter Your Last Name"
+                onChange={(e) => {
+                  setFormState(e);
+                }}
+                value={signUpForm?.lastName ? signUpForm?.lastName : ""}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <img src="../public/profile.jpg" />
+              <input
+                className="border-b-slate-600 border-b-2 bg-inherit w-full p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="address"
+                type="text"
+                name="address"
+                placeholder="Enter Your Address"
+                onChange={(e) => {
+                  setFormState(e);
+                }}
+                value={signUpForm?.address ? signUpForm?.address : ""}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <img src="../public/profile.jpg" />
+              <input
+                className="border-b-slate-600 border-b-2 bg-inherit w-full p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="city"
+                type="text"
+                name="city"
+                placeholder="Enter Your City"
+                onChange={(e) => {
+                  setFormState(e);
+                }}
+                value={signUpForm?.city ? signUpForm?.city : ""}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <img src="../public/profile.jpg" />
+              <input
+                className="border-b-slate-600 border-b-2 bg-inherit w-full p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="state"
+                type="text"
+                name="state"
+                placeholder="Enter Your State"
+                onChange={(e) => {
+                  setFormState(e);
+                }}
+                value={signUpForm?.state ? signUpForm?.state : ""}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <img src="../public/profile.jpg" />
+              <input
+                className="border-b-slate-600 border-b-2 bg-inherit w-full p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="ethnicity"
+                type="text"
+                name="ethnicity"
+                placeholder="Enter Your Ethnicity"
+                onChange={(e) => {
+                  setFormState(e);
+                }}
+                value={signUpForm?.ethnicity ? signUpForm?.ethnicity : ""}
+              />
+            </div>
+            <div className="mb-4 flex justify-between">
+              <img src="../public/profile.jpg" />
+              <label class="text-gray-200">Are you a veteran?</label>
+              <input
+                className="border-b-slate-600 border-b-2 bg-inherit w-full p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="veteran"
+                type="checkbox"
+                name="veteran"
+                value={true}
               />
             </div>
             <div className="mb-6 flex">
@@ -73,7 +168,7 @@ function App() {
                 onChange={(e) => {
                   setFormState(e);
                 }}
-                value={signUpForm.zip ? signUpForm.zip : ""}
+                value={signUpForm?.zip ? signUpForm?.zip : ""}
               />
             </div>
             <div className="mb-6 flex">
@@ -87,7 +182,7 @@ function App() {
                 onChange={(e) => {
                   setFormState(e);
                 }}
-                value={signUpForm.ageGroup ? signUpForm.ageGroup : ""}
+                value={signUpForm?.ageGroup ? signUpForm?.ageGroup : ""}
               />
             </div>
             <div className="flex items-center justify-between">
