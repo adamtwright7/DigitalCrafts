@@ -24,21 +24,8 @@ const ContactForm = () => {
   };
 
   const authentication = () => {
-    if (
-      contactForm?.username?.length < 6 ||
-      contactForm?.username?.length > 14
-    ) {
-      toast("Enter a username with 6-14 characters, inclusive.");
-    }
-    if (contactForm?.zip?.length !== 5) {
-      toast("Enter a 5-digit zip code.");
-      return;
-    }
-    if (
-      contactForm?.ageGroup?.length !== 3 ||
-      contactForm?.ageGroup?.slice(-1) !== "s"
-    ) {
-      toast("Enter your age group, like so: 30s");
+    if (!contactForm?.email?.includes("@")) {
+      toast("Enter a valid email.");
       return;
     }
     pushForm(contactForm);
@@ -68,36 +55,41 @@ const ContactForm = () => {
         <div id="formContainer">
           <p className="text-5xl p-8">Contact form</p>
           <p className="p-4"> * = required </p>
-          <div id="formContentContainer">
-            <label> Your Name </label>
-            <label> Your Email </label>
-            <label> Phone* </label>
-            <label> Message Subject* </label>
-            <label> Message* </label>
-            <label> Verification* </label>
-            <form>
+          <form>
+            <div
+              id="formContentContainer"
+              className="grid grid-cols-[1fr,2.5fr] grid-rows-6 grid-flow-col gap-4"
+            >
+              <label> Your Name </label>
+              <label> Your Email </label>
+              <label> Phone* </label>
+              <label> Message Subject* </label>
+              <label> Message* </label>
+              <label> Verification* </label>
+              <div id="nameInputs" className="flex gap-6">
+                <input
+                  className="text-gray-700 p-3 mb-3 leading-tight focus:outline-none focus:shadow-outline w-full"
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  onChange={(e) => {
+                    setContactFormState(e);
+                  }}
+                  value={contactForm?.firstName ? contactForm?.firstName : ""}
+                />
+                <input
+                  className="p-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline w-full"
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  onChange={(e) => {
+                    setContactFormState(e);
+                  }}
+                  value={contactForm?.lastName ? contactForm?.lastName : ""}
+                />
+              </div>
               <input
-                className="p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                onChange={(e) => {
-                  setContactFormState(e);
-                }}
-                value={contactForm?.firstName ? contactForm?.firstName : ""}
-              />
-              <input
-                className="p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                onChange={(e) => {
-                  setContactFormState(e);
-                }}
-                value={contactForm?.lastName ? contactForm?.lastName : ""}
-              />
-              <input
-                className="p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="p-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 name="email"
                 placeholder="e.g. hello@contact.net"
@@ -107,7 +99,7 @@ const ContactForm = () => {
                 value={contactForm?.email ? contactForm?.email : ""}
               />
               <input
-                className="p-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="p-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 name="phone"
                 placeholder="###-###-####"
@@ -117,12 +109,12 @@ const ContactForm = () => {
                 value={contactForm?.phone ? contactForm?.phone : ""}
               />
               <select
-                className="mx-3 text-gray-600 focus:border-2 focus:border-gray"
+                className=" text-gray-800 focus:border-2 focus:border-gray w-2/3"
                 name="messageSubject"
                 value={
                   contactForm.messageSubject ? contactForm.messageSubject : ""
                 }
-                onChange={(e) => setFormState(e)}
+                onChange={(e) => setContactFormState(e)}
               >
                 <option value="Other" selected>
                   Other
@@ -132,7 +124,7 @@ const ContactForm = () => {
                 <option value="Council Complaint">Council Complaint</option>
               </select>
               <input
-                className="p-3 text-gray-600 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="p-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 id="message"
                 name="message"
@@ -141,23 +133,24 @@ const ContactForm = () => {
                 }}
                 value={contactForm?.message ? contactForm?.message : ""}
               />
-              <div className="flex items-center justify-between">
-                <button
-                  className="bg-[#D44D78] text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline mx-auto p-4"
-                  type="button"
-                  onClick={authentication}
-                >
-                  SUBMIT
-                </button>
-                <Link
-                  to="/"
-                  className="bg-[#D44D78] text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline mx-auto p-4"
-                >
-                  Back to Personal Details
-                </Link>
-              </div>
-            </form>
-          </div>
+            </div>
+            <hr className="p-4" />
+            <div className="flex items-center justify-between">
+              <button
+                className="text-white border-white border-solid border-2 font-bold px-8 py-2 rounded-md focus:outline-none focus:shadow-outline mx-auto"
+                type="button"
+                onClick={authentication}
+              >
+                SUBMIT FORM
+              </button>
+              <Link
+                to="/"
+                className="bg-[#D44D78] text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline mx-auto p-4"
+              >
+                Back to Personal Details
+              </Link>
+            </div>
+          </form>
         </div>
         <div id="emptyPicPlaceholder"></div>
       </div>
