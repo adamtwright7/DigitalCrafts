@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 // We're only using redux here as part of a learning exercise. This could be accomplished with state without variable passing.
 import { searchMovie } from "../reducers/movieSlice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 
@@ -24,17 +24,13 @@ const MovieSearch = () => {
     dispatch(searchMovie(readableData.Search));
   };
 
-  // This debounce function registers the first keypress and ignores subsequent key presses.
-  // Instead, I want to ignore the first few keypressed until there is a wait.
-  function debounce(func, timeout = 500) {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, timeout);
-    };
-  }
+  // This is a debouncer for the search bar. It only searches after there haven't been changes for one second.
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      APIcall();
+    }, 700);
+    return () => clearTimeout(getData);
+  }, [movieToSearch]);
 
   return (
     <div className="bg-[#0a0022] min-h-screen">
@@ -46,7 +42,6 @@ const MovieSearch = () => {
         type="text"
         onChange={(e) => {
           setMovieToSearch(e.target.value);
-          debounce(APIcall());
         }}
       />
 
